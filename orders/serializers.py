@@ -14,7 +14,7 @@ class CarrierSerializer(serializers.ModelSerializer):
         model = Carrier
         fields = "__all__"
 
-class OrderListSerializer(serializers.ModelSerializer):
+class OrderSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer()
     carrier = CarrierSerializer()
     marketplace = MarketplaceSerializer()
