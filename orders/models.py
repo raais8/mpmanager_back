@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from marketplaces.models import Marketplace
+from products.models import MarketplaceProduct
 
 class OrderStatus(models.IntegerChoices):
     PROCESSING = 0, "Processing"
@@ -148,3 +149,19 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_id
+    
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        related_name="order_items",
+        on_delete=models.CASCADE,
+    )
+    product = models.ForeignKey(
+        MarketplaceProduct,
+        on_delete=models.CASCADE,
+    )
+    quantity = models.PositiveIntegerField()
+    purchase_price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+    )

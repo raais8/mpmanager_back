@@ -4,14 +4,14 @@ from rest_framework import filters
 
 from .models import Order
 
-from .serializers import OrderSerializer
+from .serializers import OrderMinimalSerializer, OrderSerializer
 from .pagination import OrderPagination
 
 class OrderListView(ListAPIView):
-    search_fields = ["order_id", "ticket", "customer__bill_firstname", "customer__bill_lastname", "customer__ship_firstname", "customer__ship_lastname"]
+    search_fields = ["order_id", "ticket", "customer__bill_firstname", "customer__bill_lastname"]
     filter_backends = (filters.SearchFilter,)
     queryset = Order.objects.order_by("-order_date")
-    serializer_class = OrderSerializer
+    serializer_class = OrderMinimalSerializer
     pagination_class = OrderPagination
 
     def get_queryset(self):

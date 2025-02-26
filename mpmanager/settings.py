@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'marketplaces.apps.MarketplacesConfig',
     'orders.apps.OrdersConfig',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
