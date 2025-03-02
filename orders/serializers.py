@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Order, Customer, Carrier, OrderItem
 
 from marketplaces.serializers import MarketplaceSerializer
+from products.serializers import MarketplaceProductSerializer
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +21,8 @@ class CarrierSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    marketplace_product = MarketplaceProductSerializer()
+
     class Meta:
         model = OrderItem
         fields = "__all__"

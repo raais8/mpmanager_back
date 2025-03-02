@@ -156,7 +156,7 @@ class OrderItem(models.Model):
         related_name="order_items",
         on_delete=models.CASCADE,
     )
-    product = models.ForeignKey(
+    marketplace_product = models.ForeignKey(
         MarketplaceProduct,
         on_delete=models.CASCADE,
     )
