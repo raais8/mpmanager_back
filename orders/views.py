@@ -1,5 +1,4 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
-from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 from rest_framework import filters
 
 from .models import Order
@@ -27,6 +26,6 @@ class OrderListView(ListAPIView):
 
         return queryset
 
-class OrderView(RetrieveAPIView):
+class OrderView(RetrieveUpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
