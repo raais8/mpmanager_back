@@ -5,7 +5,10 @@ from marketplaces.models import Marketplace
 class Product(models.Model):
     parent = models.ForeignKey(
         "self",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="children",
     )
     name = models.CharField(
         max_length=250,
