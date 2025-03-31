@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from marketplaces.models import Marketplace
 
@@ -41,3 +42,7 @@ class MarketplaceProduct(models.Model):
     enabled = models.BooleanField(
         default=True,
     )
+
+    def clean(self):
+        if self.product.children.exists():
+            raise ValidationError("A product with children cannot be associated with a marketplace")
