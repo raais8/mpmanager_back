@@ -22,7 +22,7 @@ class ProductParentMinimalSerializer(serializers.ModelSerializer):
         fields = ["id", "parent", "name", "sku", "reference", "image", "marketplaces", "children"]
 
     def get_marketplaces(self, obj):
-        return Marketplace.objects.filter(marketplace_products__product=obj).values_list("id", flat=True)
+        return Marketplace.objects.filter(marketplace_products__product=obj, marketplace_products__enabled=True).values_list("id", flat=True)
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

@@ -38,3 +38,6 @@ class MarketplaceProduct(models.Model):
         Product,
         on_delete=models.CASCADE,
     )
+    enabled = models.BooleanField(
+        default=True,
+    )

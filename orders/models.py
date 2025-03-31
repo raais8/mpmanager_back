@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from marketplaces.models import Marketplace
+from marketplaces.models import Marketplace, Country
 from products.models import MarketplaceProduct
 
 class OrderStatus(models.IntegerChoices):
@@ -19,10 +19,6 @@ class PayMethods(models.IntegerChoices):
     BANK_TRANSFER = 2, "Bank Transfer"
     CASH_ON_DELIVERY = 3, "Cash on Delivery"
     BIZUM = 4, "Bizum"
-
-class Country(models.IntegerChoices):
-    ES = 0, "Spain"
-    FR = 1, "France"
 
 class Customer(models.Model):
     bill_phone = models.CharField(
