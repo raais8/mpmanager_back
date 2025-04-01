@@ -39,7 +39,7 @@ class ProductListView(ListAPIView):
         marketplaces_list = marketplaces.split(",")
 
         if "0" in marketplaces_list:
-            filter_conditions = Q(marketplaceproduct__marketplace_id__in=marketplaces_list) | Q(marketplaceproduct__isnull=True)
+            filter_conditions = Q(marketplaceproduct__marketplace_id__in=marketplaces_list) | (Q(marketplaceproduct__isnull=True) & Q(children__isnull=True))
         else:
             filter_conditions = Q(marketplaceproduct__marketplace_id__in=marketplaces_list)
 
