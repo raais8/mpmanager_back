@@ -1,11 +1,10 @@
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
-from rest_framework import filters
 
 from django.db.models import Q
 
-from .models import Product
+from .models import Product, ProductAttribute, ProductAttributeType
 
-from .serializers import ProductParentMinimalSerializer, ProductSerializer
+from .serializers import ProductParentMinimalSerializer, ProductSerializer, ProductAttributeSerializer, ProductAttributeTypeSerializer
 from .pagination import ProductPagination
 
 from itertools import chain
@@ -51,7 +50,14 @@ class ProductListView(ListAPIView):
 
         return queryset
 
-
 class ProductView(RetrieveUpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+class ProductAttributeListView(ListAPIView):
+    queryset = ProductAttribute.objects.all()
+    serializer_class = ProductAttributeSerializer
+
+class ProductAttributeTypeListView(ListAPIView):
+    queryset = ProductAttributeType.objects.all()
+    serializer_class = ProductAttributeTypeSerializer
