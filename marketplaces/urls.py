@@ -1,8 +1,8 @@
-from django.urls import path
+from rest_framework import routers
 
 from . import views
 
-app_name = 'marketplaces'
-urlpatterns = [
-    path('api/marketplaces/', views.MarketplaceListView.as_view(), name='marketplaces'),
-]
+router = routers.DefaultRouter()
+router.register(r"marketplaces", views.MarketplaceViewSet, basename="marketplace")
+
+urlpatterns = router.urls
